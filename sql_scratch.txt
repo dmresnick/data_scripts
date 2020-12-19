@@ -1,0 +1,27 @@
+CREATE TABLE `country`.`annualdata` (
+  `idAnnualData` INT NOT NULL AUTO_INCREMENT,
+  `country` VARCHAR(45) NULL,
+  `indicator` VARCHAR(45) NULL,
+  `year` DATE NULL,
+  `amount` VARCHAR(45) NULL,
+  PRIMARY KEY (`idAnnualData`),
+  UNIQUE INDEX `idAnnualData_UNIQUE` (`idAnnualData` ASC) VISIBLE,
+  UNIQUE INDEX `indicator_UNIQUE` (`indicator` ASC) VISIBLE,
+  INDEX `fkcountry_idx` (`country` ASC) VISIBLE,
+  INDEX `fkyear_idx` (`year` ASC) VISIBLE,
+  CONSTRAINT `fkinidcator`
+    FOREIGN KEY (`indicator`)
+    REFERENCES `country`.`annualindicator` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fkcountry`
+    FOREIGN KEY (`country`)
+    REFERENCES `country`.`countries` (`countryname`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fkyear`
+    FOREIGN KEY (`year`)
+    REFERENCES `country`.`yearstable` (`year`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = '		';
